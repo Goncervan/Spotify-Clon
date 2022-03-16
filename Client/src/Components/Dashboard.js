@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Container, Form } from 'react-bootstrap'
 import useAuth from '../Hooks/useAuth'
 import SpotifyWebApi from 'spotify-web-api-node'
 import TrackSearchResult from './TrackSearchResult'
@@ -71,7 +70,7 @@ export default function Dashboard({ code }) {
     useEffect(() => {
         if (!playingTrack) return
 
-        axios.get('http://localhost:3001/lyrics', {
+        axios.get('https://git.heroku.com/obscure-bastion-99854.git/lyrics', {
             params: {
                 track: playingTrack.title,
                 artist: playingTrack.artist
