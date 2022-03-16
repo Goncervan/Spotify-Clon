@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --background-color: #0D0F31;
+    --main-color: #5355AF;
+    --secondary-color: #8484CA;
+    --font-color: #dfdff3;
+}
+.track{
+    width: 96%;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 5px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.track:hover{
+    background: var(--main-color);
+}
+
+.infos{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.name{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--background-color);
+}
+
+.artist{
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--font-color);
+}
+
+@media (max-width: 575px) {
+    .track{
+        height: 180px;
+    }
+}
