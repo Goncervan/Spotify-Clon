@@ -7,7 +7,7 @@ export default function useAuth(code) {
     const [expiresIn, setExpiresIn] = useState()
 
     useEffect(() => {
-        axios.post('https://spotify-gonzacervan.herokuapp.com//login', {
+        axios.post('https://spotify-gonzacervan.herokuapp.com/login', {
             code,
         }).then(res => {
             setAccessToken(res.data.accessToken);
