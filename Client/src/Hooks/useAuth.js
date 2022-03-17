@@ -7,7 +7,7 @@ export default function useAuth(code) {
     const [expiresIn, setExpiresIn] = useState()
 
     useEffect(() => {
-        axios.post('https://git.heroku.com/obscure-bastion-99854.git/login', {
+        axios.post('https://spotify-gonzacervan.herokuapp.com//login', {
             code,
         }).then(res => {
             setAccessToken(res.data.accessToken);
@@ -24,7 +24,7 @@ export default function useAuth(code) {
         // Seteamos un intervalo para que se refresque el token cuando le falte 1 minuto para expirar
         const interval = setInterval(() => {
             axios
-                .post('https://git.heroku.com/obscure-bastion-99854.git/refresh', {
+                .post('https://spotify-gonzacervan.herokuapp.com/refresh', {
                     refreshToken,
                 })
                 .then(res => {

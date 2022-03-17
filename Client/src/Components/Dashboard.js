@@ -70,7 +70,7 @@ export default function Dashboard({ code }) {
     useEffect(() => {
         if (!playingTrack) return
 
-        axios.get('https://git.heroku.com/obscure-bastion-99854.git/lyrics', {
+        axios.get('https://spotify-gonzacervan.herokuapp.com/lyrics', {
             params: {
                 track: playingTrack.title,
                 artist: playingTrack.artist
