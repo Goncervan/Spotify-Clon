@@ -13,10 +13,10 @@ export default function useAuth(code) {
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             setExpiresIn(res.data.expiresIn);
-            window.history.pushState({}, null, "/");
+            window.history.pushState({}, null, "/Spotify-Clon/");
         }).catch((err) => {
             console.log(err)
-            window.location = "/";
+            window.location = "/Spotify-Clon/";
         })
     }, [])
 
@@ -33,7 +33,7 @@ export default function useAuth(code) {
                     setExpiresIn(res.data.expiresIn);
                 })
                 .catch(() => {
-                    window.location = "/";
+                    window.location = "/Spotify-Clon/";
                 })
         }, (expiresIn - 60) * 1000)
 
