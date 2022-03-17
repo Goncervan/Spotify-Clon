@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/dashboard' element={<Dashboard code={code} />} />
+        <Route exact path='/#/dashboard' element={<Dashboard code={code} />} />
       </Routes>
     </HashRouter>
   )
