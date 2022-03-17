@@ -9,7 +9,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route excact path='/Spotify-Clon/' element={<Login />} />
+        <Route exact path='/Spotify-Clon/' element={<Login />} />
         <Route path='/dashboard' element={<Dashboard code={code} />} />
       </Routes>
     </HashRouter>
