@@ -11,11 +11,11 @@ function App() {
     <HashRouter>
       <Routes>
         <Route exact path='/' element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard code={code} />} />
-        <Route exact path='/dashboard' element={<Dashboard code={code} />} />
+        {/* <Route path='/dashboard' element={<Dashboard code={code} />} />
+        <Route exact path='/dashboard' element={<Dashboard code={code} />} /> */}
         <Route path='/#/dashboard' element={<Dashboard code={code} />} />
-        <Route exact path='/#/dashboard' element={<Dashboard code={code} />} />
-        <Route exact path='/Prueba' element={<Prueba/>}/>
+        {/* <Route exact path='/#/dashboard' element={<Dashboard code={code} />} />
+        <Route exact path='/Prueba' element={<Prueba/>}/> */}
       </Routes>
     </HashRouter>
   )
