@@ -7,18 +7,18 @@ const code = new URLSearchParams(window.location.search).get('code')
 
 
 function App() {
-  return (
-    <HashRouter>
-      <Routes>
-        <Route exact path='/' element={<Login />} />
-        {/* <Route path='/dashboard' element={<Dashboard code={code} />} />
-        <Route exact path='/dashboard' element={<Dashboard code={code} />} /> */}
-        <Route path='/#/dashboard' element={<Dashboard code={code} />} />
-        {/* <Route exact path='/#/dashboard' element={<Dashboard code={code} />} />
-        <Route exact path='/Prueba' element={<Prueba/>}/> */}
-      </Routes>
-    </HashRouter>
-  )
+  return code ? <Dashboard code={code}/> : <Login/>
+    // <HashRouter>
+    //   <Routes>
+    //     <Route exact path='/' element={<Login />} />
+    //     <Route path='/dashboard' element={<Dashboard code={code} />} />
+    //     <Route exact path='/dashboard' element={<Dashboard code={code} />} />
+    //     <Route path='/#/dashboard' element={<Dashboard code={code} />} />
+    //     <Route exact path='/#/dashboard' element={<Dashboard code={code} />} />
+    //     <Route exact path='/Prueba' element={<Prueba/>}/>
+    //   </Routes>
+    // </HashRouter>
+  
 }
 
 export default App;
