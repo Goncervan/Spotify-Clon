@@ -31,57 +31,53 @@ export default function Dashboard({ code }) {
         spotify.setAccessToken(accesstoken);
     }, [accesstoken])
 
-    // 
+
     useEffect(() => {
         // Nos aseguramos de que si no hay búsqueda, no haya resultados
         if (!search) return setSearchResults([]);
         // Nos aseguramos de que si no tenemos accessToken no hagamos querie
         if (!accesstoken) return;
-
-
         // Seteamos una variable para cancelar las queries si hacemos otra nueva
         let cancel = false;
         // Usamos spotify para buscar las canciones pasandole la búsqueda
         spotify.searchTracks(search).then(res => {
-
             if (cancel) return
-
-            setSearchResults(res.body.tracks.items.map(track => {
-
-                // Buscamos entre todas las imagenes y nos quedamos con las más chica
-                const smallestAlbumImage = track.album.images.reduce((smallest, image) => {
-                    if (image.height < smallest.height) return image
-                    return smallest
-                }, track.album.images[0])
-
-                return {
-                    artist: track.artists[0].name,
-                    title: track.name,
-                    uri: track.uri,
-                    albumUrl: smallestAlbumImage.url
-                }
-            }))
+            setSearchResults(
+                res.body.tracks.items.map(track => {
+                    // Buscamos entre todas las imagenes y nos quedamos con las más chica
+                    const smallestAlbumImage = track.album.images.reduce(
+                        (smallest, image) => {
+                            if (image.height < smallest.height) return image
+                            return smallest
+                        },
+                        track.album.images[0])
+                    return {
+                        artist: track.artists[0].name,
+                        title: track.name,
+                        uri: track.uri,
+                        albumUrl: smallestAlbumImage.url
+                    }
+                }))
         })
         // La seteamos en true para cancelar la querie 
-        return () => cancel = true
+        return () => (cancel = true)
     }, [search, accesstoken])
 
     // Buscar letra de las canciones
     useEffect(() => {
         if (!playingTrack) return
 
-        axios.get('https://spotify-gonzacervan.herokuapp.com/lyrics', {
+        axios.get('http://localhost:3001/lyrics', {
             params: {
                 track: playingTrack.title,
-                artist: playingTrack.artist
-            }
+                artist: playingTrack.artist,
+            },
         }).then(res => {
             setLyrics(res.data.lyrics)
         }
         )
     }, [playingTrack])
 
-    console.log(lyrics)
     return (
         <div className="principal">
             <div className="contenedor">
@@ -100,7 +96,7 @@ export default function Dashboard({ code }) {
                             <div className="Info">
                                 <h1 className="title">Empieza a buscar canciones o artistas!</h1>
                                 <h3 className="subTitle">App creada por Gonzalo Cervan</h3>
-                                <div  className="container-btn">
+                                <div className="container-btn">
                                     <a className="btn-redes" href="https://www.linkedin.com/in/gonzalo-cervan/" target="_blank">
                                         <img className="logos" src='https://cdn-icons-png.flaticon.com/512/174/174857.png' alt='LinkedIn' />
                                     </a>

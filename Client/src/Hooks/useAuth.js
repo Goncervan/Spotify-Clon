@@ -7,17 +7,17 @@ export default function useAuth(code) {
     const [expiresIn, setExpiresIn] = useState()
 
     useEffect(() => {
-        axios.post('https://spotify-gonzacervan.herokuapp.com/login', {
+        axios.post('http://localhost:3001/login', {
             code,
-        }).then(res => {
+        }).then(res => { 
+            console.log("Auth hecha")
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             setExpiresIn(res.data.expiresIn);
-            window.history.pushState({}, null, "/dashboard");
-            console.log("Auth hecha")
+            window.history.pushState({}, null, "/");
         }).catch((err) => {
-            console.log(err)
-            // window.location = "/Spotify-Clon/";
+            console.log("Error en useEfect de login",err)
+            window.location = "/";
         })
     }, [])
 
@@ -26,7 +26,7 @@ export default function useAuth(code) {
         // Seteamos un intervalo para que se refresque el token cuando le falte 1 minuto para expirar
         const interval = setInterval(() => {
             axios
-                .post('https://spotify-gonzacervan.herokuapp.com/refresh', {
+                .post('http://localhost:3001/refresh', {
                     refreshToken,
                 })
                 .then(res => {
@@ -34,7 +34,7 @@ export default function useAuth(code) {
                     setExpiresIn(res.data.expiresIn);
                 })
                 .catch(() => {
-                    window.location = "/Spotify-Clon/";
+                    window.location = "/";
                 })
         }, (expiresIn - 60) * 1000)
 

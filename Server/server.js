@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+const port = 3001
 // Para hacer el login con la api de Spotify
 app.post('/login', (req, res) => {
     const code = req.body.code;
@@ -30,6 +30,7 @@ app.post('/login', (req, res) => {
                 expiresIn: data.body.expires_in
             })
         }).catch((err) => {
+            console.log("ERROR en login Back", err)
             res.sendStatus(400)
         })
 })
@@ -54,7 +55,8 @@ app.post('/refresh', (req, res) => {
                     expiresIn: data.body.expires_in
                 })
             }
-        ).catch(() => {
+        ).catch((err) => {
+            console.log("ERROR en refresh Back", err)
             res.sendStatus(400);
         })
 
@@ -64,7 +66,7 @@ app.post('/refresh', (req, res) => {
 app.get('/lyrics', async (req, res) => {
     const lyrics = await lyricsFinder(req.query.artist, req.query.track) || "No se encontró la letra de la canción"
 
-    res.json({lyrics})
+    res.json({ lyrics })
 })
 
 

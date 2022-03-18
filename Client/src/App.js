@@ -1,10 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import Prueba from './Components/Prueba';
+// import { HashRouter, Routes, Route } from 'react-router-dom';
+// import Prueba from './Components/Prueba';
 const code = new URLSearchParams(window.location.search).get('code')
-
+console.log(code,"codigo de app")
 
 function App() {
   return code ? <Dashboard code={code}/> : <Login/>
